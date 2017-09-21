@@ -15,21 +15,6 @@
  };
 
  // Another Example Album
- var albumMadonna = {
-     name: 'Sunshine',
-     artist: 'Madonna',
-     label: 'PRG',
-     year: '2015',
-     albumArtUrl: 'assets/images/album_covers/02.png',
-     songs: [
-         { name: 'Hello, Operator?', duration: '2:51' },
-         { name: 'Ring, ring, ring', duration: '5:01' },
-         { name: 'Fits in your pocket', duration: '3:21'},
-         { name: 'Can you hear me now?', duration: '3:45' },
-         { name: 'Wrong phone number', duration: '2:15'}
-     ]
- };
- // Another Example Album
  var albumMarconi = {
      name: 'The Telephone',
      artist: 'Guglielmo Marconi',
@@ -45,6 +30,21 @@
      ]
  };
 
+ // Another Example Album
+ var albumMadonna = {
+     name: 'Sunshine',
+     artist: 'Madonna',
+     label: 'PRG',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/02.png',
+     songs: [
+         { name: 'Arizona', duration: '2:51' },
+         { name: 'Tomorrow Land', duration: '5:01' },
+         { name: 'Chocolate Cake', duration: '3:21'},
+         { name: 'Green Daisies', duration: '3:45' },
+         { name: 'Tell your mama', duration: '2:15'}
+     ]
+ };
 
 
  var createSongRow = function(songNumber, songName, songLength) {
@@ -67,7 +67,7 @@
 var setCurrentAlbum = function(album) {
     // #2
     albumTitle.firstChild.nodeValue = album.name;
-
+    // albumArtist.firstChild.nodeValue = album.artist; Breaks code
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
     albumImage.setAttribute('src', album.albumArtUrl);
 
@@ -76,7 +76,7 @@ var setCurrentAlbum = function(album) {
 
     // #4
     for (var i = 0; i < album.songs.length; i++) {
-        albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].duration);
     }
 };
 
