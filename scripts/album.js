@@ -59,15 +59,16 @@
     return template;
 };
     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+    var albumArtist = document.getElementsByClassName('album-view-artists')[0];
     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
     var albumImage = document.getElementsByClassName('album-cover-art')[0];
     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
     // #2
+
     albumTitle.firstChild.nodeValue = album.name;
-    // albumArtist.firstChild.nodeValue = album.artist; Breaks code
+    albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
     albumImage.setAttribute('src', album.albumArtUrl);
 
@@ -93,12 +94,19 @@ window.onload = function() {
     setCurrentAlbum(albumPicasso);
 
     var findParentByClassName = function(element, targetClass) {
-        if (element) {
-            var currentParent = element.parentElement;
-            while (currentParent.className !== targetClass && currentParent.className !== null) {
-                currentParent = currentParent.parentElement;
-            }
-            return currentParent;
+      if (element) {
+          var currentParent = element.parentElement;
+          while (currentParent.className !== targetClass && currentParent.className !== null) {
+              currentParent = currentParent.parentElement;
+
+          }
+          if (currentParent.className !== targetClass) {
+              console.log('No parent found with that class name');
+          }
+          if (currentParent.className === null){
+            console.log('No parent found');
+          }
+          return currentParent;
         }
     };
 
