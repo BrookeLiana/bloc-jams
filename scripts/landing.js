@@ -1,7 +1,7 @@
 
-var animatePoints = function() {
+var animatePoints = function(){
 
-  var revealPoint = function() {
+  var revealPoint = function(){
           // #7
           $(this).css({
               opacity: 1,
@@ -33,7 +33,8 @@ var animatePoints = function() {
                   // #4
        if ($(window).scrollTop() >= scrollDistance) {
              animatePoints();
-             });
+
+           });
 
          window.addEventListener("scroll", function(event) {
            if (pointsArray[0].getBoundingClientRect().top <= 500) {
