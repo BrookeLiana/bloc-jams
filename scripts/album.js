@@ -146,7 +146,7 @@ window.onload = function() {
            currentlyPlayingSong = songItem.getAttribute('data-song-number');
        }
  };
-// Elements to which we'll be adding listeners
+
     songListContainer.addEventListener('mouseover', function(event) {
            // #1
            if (event.target.parentElement.className === 'album-view-song-item') {
