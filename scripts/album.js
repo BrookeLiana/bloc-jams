@@ -51,7 +51,7 @@ var $nextButton = $('.main-controls .next');
 $(document).ready(function() {
   setCurrentAlbum(albumPicasso);
   $previousButton.click(function(event) {
-    previousSong()
+    previousSong();
   });
   $nextButton.click(function(event) {
     nextSong();
@@ -104,6 +104,17 @@ $(document).ready(function() {
 
   }
 
+  var setSong = function(songNumber) {
+    currentlyPlayingSongNumber = parseInt(songNumber);
+    currentSongFromAlbum = currentAlbum.songs[currentlyPlayingSongNumber - 1];
+  }
+
+  var getSongNumberCell = function(number) {
+    var currentlyPlayingSongElement = $('[data-song-number="' + number + '"]');
+    currentlyPlayingSongElement.html(parseInt(number));
+    return currentlyPlayingSongElement;
+  }
+
   var findParentByClassName = function(element, targetClass) {
     if (element) {
         var currentParent = element.parentElement;
@@ -145,8 +156,7 @@ $(document).ready(function() {
     if (currentlyPlayingSongNumber === null) {
        songItem.innerHTML = pauseButtonTemplate;
 
-       currentlyPlayingSongNumber = parseInt(songItem.getAttribute('data-song-number'));
-       currentSongFromAlbum = currentAlbum.songs[currentlyPlayingSongNumber - 1];
+       setSong(songItem.getAttribute('data-song-number'));
        updatePlayerBarSong();
      } else if (currentlyPlayingSongNumber === songItem.getAttribute('data-song-number')) {
          songItem.innerHTML = playButtonTemplate;
@@ -155,10 +165,9 @@ $(document).ready(function() {
          currentSongFromAlbum = null;
 
        } else if (currentlyPlayingSongNumber !== songItem.getAttribute('data-song-number')) {
-         currentlyPlayingSongNumber = parseInt(songItem.getAttribute('data-song-number'));
-         currentSongFromAlbum = currentAlbum.songs[currentlyPlayingSongNumber];
-         var currentlyPlayingSongElement = document.querySelector('[data-song-number="' + currentlyPlayingSongNumber + '"]');
-         currentlyPlayingSongElement.innerHTML = parseInt(currentlyPlayingSongElement.getAttribute('data-song-number'));
+         setSong(songItem.getAttribute('data-song-number'));
+
+         var currentlyPlayingSongElement = getSongNumberCell(currentlyPlayingSongNumber);
          songItem.innerHTML = pauseButtonTemplate;
          updatePlayerBarSong();
        }
